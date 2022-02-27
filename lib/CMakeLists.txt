@@ -10,7 +10,7 @@ project (
 file(GLOB SOURCES_DIR source/*.cpp)
 file(GLOB HEADERS_DIR include/*.hpp)
 
-add_library(service SHARED ${SOURCES_DIR})
+add_library(viewer SHARED ${SOURCES_DIR})
 
-target_include_directories(service PRIVATE ${HEADERS_DIR})
-set_target_properties(elevator PROPERTIES CXX_STANDARD 17)
+target_include_directories(viewer PRIVATE ${HEADERS_DIR})
+set_target_properties(viewer PROPERTIES CXX_STANDARD 17)
