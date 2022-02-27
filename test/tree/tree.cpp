@@ -2,8 +2,11 @@
 #include <vector>
 #include "viewer.hpp"
 
+TreeMap tm;
+
 void dfs(const std::vector<size_t> graph[], size_t n, size_t x) {
   for (auto &y : graph[x]) {
+    tm.addEdge(x, y);
     dfs(graph, n, y);
   }
 }
@@ -26,4 +29,5 @@ int main() {
   }
 
   dfs(graph, n, root);
+  tm.show();
 }
