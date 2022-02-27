@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "viewer.hpp"
 
 void dfs(const std::vector<size_t> graph[], size_t n, size_t x) {
   for (auto &y : graph[x]) {
