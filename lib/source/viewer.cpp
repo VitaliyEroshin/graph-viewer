@@ -15,9 +15,11 @@ void TreeMap::show() {
   
   std::queue<Vertex*> bfs;
   std::queue<size_t> basePadding;
+  std::queue<bool> straightUnder;
+
   bfs.push(&root);
   basePadding.push(0);
-  
+  straightUnder.push(true);
   std::vector<std::string> representation;
 
   while (!bfs.empty()) {
@@ -27,13 +29,18 @@ void TreeMap::show() {
     basePadding.pop();
     bfs.pop();
 
-    bool straight = false;
+    bool straight = straightUnder.front();
+    straightUnder.pop();
+
     if (x->level != level) {
       level = x->level;
       padding = 0;
-      straight = true;
     }
-
+    
+    if (straight) {
+      padding = 0;
+    }
+    
     size_t xaxis = level * 3;
     size_t yaxis = (padding + base) * 3;
 
@@ -66,10 +73,12 @@ void TreeMap::show() {
     
     base += padding;
     padding += x->size;
-
+    straight = true;
     for (auto &y : x->children) {
       bfs.push(&y);
       basePadding.push(base);
+      straightUnder.push(straight);
+      straight = false;
     }
   }
 
